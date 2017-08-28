@@ -24,5 +24,8 @@
         "dist/js/bootstrap.js"
       ]
     }
+  },
+  "resolutions": {
+    "select2": "~3.4"
   }
 }

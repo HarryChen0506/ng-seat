@@ -59,25 +59,120 @@ body {
   margin-top: 28px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
+
+/*set页面*/
+    body {
+      -moz-user-select: none;  
+      -webkit-user-select: none;  
+      -ms-user-select: none;  
+      -khtml-user-select: none;  
+      user-select: none;
+    }
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: normal;
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      /*display: inline-block;*/
+      margin: 0 10px;
+    }
+
+    a {
+        color: #42b983;
+    }
+    .f-l {
+        float: left
+    }
+    .m_r_10 { 
+        margin-right: 10px
+    }
+
+    /*.container {
+        width: 1000px;
+        margin: 0 auto;
+    }*/
+
+    .top {
+        background-color: #CADAEC;
+        line-height: 100px
+    }
+
+    .main {
+        display: flex;
+       
+    }
+    .main .left {
+          flex: 1;
+          overflow: hidden;
+            
+    }
+    .main .left .seat {
+            overflow: scroll;
+            text-align: left;
+            border: 1px solid #000;
+            height: 400px;
+            max-width:100%;                           
+    }
+    .main .left .seat .seat-container {                    
+                    
+    }    
+    .main .left .seat .seat-container .seat-row {
+            display: flex;
+            flex-wrap: nowrap;
+            
+    }
+    .main .left .seat .seat-container .seat-row .seat-one {
+          /*display: inline-block;*/
+          min-width: 50px;
+          height: 50px;
+          background-color: #EEF0F4;
+          color: #7B83A8;
+          margin: 5px;                           
+    } 
+    .main .left .seat .seat-container .seat-row .seat-one.checked {
+          border: 1px solid #000
+    }
+    .main .left .seat .seat-container .seat-row .seat-one.seled {
+          border: 1px solid red
+    }
+    .main .right {
+          width: 300px;
+          height: 800px;
+          background-color: #F6E3E2;
+          text-align: left;
+          padding-left:20px;         
+    }
+    .main .right .row {
+          display: flex;
+          margin-top: 5px;             
+    }
+    .main .right .row .header {
+        width: 100px;
+
+    }
+    .main .right .row .box {
+        flex: 1;
+        /*display: flex;*/       
+    }
+    .main .right .row .box input {
+        margin-right: 10px;
+        width: 30px;
+    }
+    .main .seat-config {
+        margin-top: 20px;          
+    }
+    .main .seat-config .btn-group {
+          margin-top: 20px;
+          text-align: right;
+          padding-right: 20px
+    }

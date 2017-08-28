@@ -54,8 +54,8 @@ angular
           url: '/set',
           views:{
             "":{
-              controller: 'MainCtrl',
-              templateUrl: 'views/main.html'
+              controller: 'SetCtrl',
+              templateUrl: 'views/set.html'
             }
           }
         })      
