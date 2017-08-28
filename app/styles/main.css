@@ -176,3 +176,48 @@ body {
           text-align: right;
           padding-right: 20px
     }
+
+    /*座位盒子*/
+     .seat-box {
+      text-align: center;
+      /*overflow: hidden;*/
+      position: relative;
+      height: 100%;
+      color: #fff;
+    }
+     .seat-box.null {
+        opacity: 0.2;
+      }
+      .seat-box.isSeat {
+        background-color:#CADAEC;
+      }
+      .seat-box.valid {
+        background-color: lightseagreen
+      }
+      .seat-box.soldout {
+        background-color: gray
+      }
+      .seat-box  .title {
+        font-size: 12px;
+      }
+      .seat-box:hover .detail-box {         
+           display: block;        
+      }
+      .seat-box  .price-icon {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius:5px ;
+      }
+       .seat-box .detail-box {
+        display: none;
+        padding: 2px;
+        position: absolute;
+        z-index: 10;
+        top: 0px;
+        right: -20px;
+        font-size: 10px;
+        background-color: #000;
+        color: #fff;
+        border-radius: 4px;
+      }

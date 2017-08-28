@@ -4,7 +4,7 @@
         </section>
         <section class="main">
             <div class="left">
-                <h3>座位图</h3>
+                <h3>座位图</h3><div><button ng-click="cancelSelected()">取消全选</button></div>
                 <div class="seat" id="seat-box" >
                     <div class="seat-container">
                          <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index">
@@ -13,12 +13,14 @@
                                  ng-repeat ="itemCol in itemRow track by $index"
                                  ng-click="selectSeat(itemCol)"
                                  >
-                                <seat :name="itemCol.name"
+                                <seat seat-one="itemCol"
+                                      :name="itemCol.name" 
                                       :origin-price="itemCol.originPrice"  
                                       :row-num="itemCol.rowNum" 
                                       :col-num="itemCol.colNum"
                                       :seat-status="itemCol.seatStatus"
-                                      :ticket-status="itemCol.ticketStatus"></seat>
+                                      :ticket-status="itemCol.ticketStatus">
+                                </seat>
                             </div>
                         </div>
                     </div>                   
@@ -37,7 +39,7 @@
                         <div class="box">
                             <input class="f-l" type="text" placeholder="行" ng-model="main.row">
                             <input class="f-l" type="text" placeholder="列" ng-model="main.col">
-                            <button class="f-l" @click="resetRowCol()">重置</button>
+                            <button class="f-l" ng-click="resetRowCol()">重置</button>
                         </div>
                     </section>  
                 </div>  
@@ -66,7 +68,7 @@
                         </div>                        
                     </section>                                   
                     <div class="btn-group">
-                        <button @click="setSeatTable()">确定</button>
+                        <button ng-click="setSeatTable()">确定</button>
                     </div>
                 </div>
                 <div class="seat-config">
@@ -78,15 +80,15 @@
                             <select ng-model="main.seatSet.color" ng-options=" opt for opt in main.seatSet.colorList">                                
                                 <option value="">请选择颜色</option>
                             </select>  
-                            <button @click="addOriginPrice()">添加</button>                      
+                            <button ng-click="addOriginPrice()">添加</button>                      
                         </div>
                     </section>                                                      
                     <div class="btn-group">
                         <ul>
-                            <li v-for="item in seatSet.originPriceList">
+                            <li ng-repeat="item in main.seatSet.originPriceList track by $index">
                                 <span class="m_r_10">票面:{{item.originPriceNum}}</span>
                                 <span class="m_r_10">颜色:{{item.color}}</span>
-                                <button @click="removeOriginPrice(item, seatSet.originPriceList)">删除</button>
+                                <button ng-click="removeOriginPrice(item, main.seatSet.originPriceList)">删除</button>
                             </li>
                         </ul>
                     </div>
@@ -94,15 +96,18 @@
                         <div class="header">票面</div>
                         <div class="box">
                             <!--<input class="f-l" type="number" placeholder="行" v-model="seatSet.seat.originPrice">  -->
-                            <select v-model="seatSet.originPrice">
+                            <!--<select v-model="seatSet.originPrice">
                                 <option v-for="option in seatSet.originPriceList" v-bind:value="option">
                                     {{ option.originPriceNum }}
                                 </option>
+                            </select> -->
+                            <select ng-model="main.seatSet.originPrice" ng-options="opt as opt.originPriceNum for opt in main.seatSet.originPriceList">                                
+                                <option value="">请选择票面</option>
                             </select>                         
                         </div>
                     </section>                                     
                     <div class="btn-group">
-                        <button @click="setSeatOriginPrice()">确定</button>
+                        <button ng-click="setSeatOriginPrice()">确定</button>
                     </div>
 
                 </div>                   
@@ -117,9 +122,9 @@
                         </div>
                     </section>                    
                     <div class="btn-group">
-                        <button @click="setSeatTicketStatus()">确定</button>
+                        <button ng-click="setSeatTicketStatus()">确定</button>
                     </div>
-                </div>
+                </div>                
                 <div style="display:block; max-height:150px; overflow:auto"><pre >{{seatSet}}</pre></div>
 
                 

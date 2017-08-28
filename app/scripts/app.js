@@ -63,5 +63,20 @@ angular
           
       //  $urlRouterProvider.otherwise("/404");
       }
-    ])
+  ])
+  
+  .directive('seat', function () {
+    return{
+      restrict:'EA',
+      templateUrl:'templates/seat.html',
+      scope:{
+          seatOne:'=seatOne',
+      },
+      controller:'',
+      link: function (scope, element, attr) {
+
+
+      }
+    }
+  })
 

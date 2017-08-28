@@ -19,10 +19,10 @@ angular.module('ngSeatApp')
             selectedList: [],
             seat:{
                 name: '座位',
-                rowIndex: 0,
-                colIndex: 0,
-                rowNum: 1,
-                colNum:1,
+                rowIndex: '',
+                colIndex: '',
+                rowNum: '',
+                colNum:'',
                 seatStatus: 'null',
                 ticketStatus: 'none',
                 originPrice: {
@@ -106,7 +106,60 @@ angular.module('ngSeatApp')
             }) 
            console.log($scope.main.selectedList);
         }
-       
+        //重置行与列
+        $scope.resetRowCol = function(){
+            $scope.initTable($scope.main.row, $scope.main.col);
+        }
+        //设置座位
+        $scope.setSeatTable = function (){
+             var seatProps = $scope.main.seatSet.seat;
+            //设置座位
+            var arr = []; //座位号序列
+            for(var i= parseInt(seatProps.colNum_from);  i<= parseInt(seatProps.colNum_to); i++){
+                arr.push(i);
+            }
+            $scope.main.selectedList.forEach((item,index)=>{                
+                for(var key in seatProps ){                    
+                    item[key] = seatProps[key];
+                } 
+                item.colNum = arr[index];              
+            })
+        }
+        // 添加票面列表
+        $scope.addOriginPrice = function (){
+            var obj = {
+                originPriceNum: $scope.main.seatSet.originPriceNum,
+                color: $scope.main.seatSet.color
+            }
+             $scope.main.seatSet.originPriceList.push(obj);
+        }
+        //删除票面
+        $scope.removeOriginPrice = function (item, list){
+            var index = list.indexOf(item);
+            if (index > -1) {
+                list.splice(index, 1);
+            }
+        }
+       //设置票面
+       $scope.setSeatOriginPrice = function (){
+            $scope.main.selectedList.forEach((item,index)=>{                
+               item.originPrice = $scope.main.seatSet.originPrice   
+            })
+       }
+       //售票设置
+       $scope.setSeatTicketStatus = function (){
+            $scope.main.selectedList.forEach((item,index)=>{                
+               item.ticketStatus = $scope.main.seatSet.ticketStatus   
+            })
+       }
+       //取消全选
+       $scope.cancelSelected = function (){
+            //取消选择
+            $scope.main.selectedList.forEach((item)=>{
+                item.selected = false
+            })
+            $scope.calSelectedList();
+       }
 
        
         function init(){

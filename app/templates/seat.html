@@ -1,0 +1,19 @@
+<div class="seat-box" 
+       ng-class="{null:seatOne.seatStatus=='null',isSeat:seatOne.seatStatus=='seat',valid: seatOne.ticketStatus=='valid',soldout: seatOne.ticketStatus=='soldout'}">
+    <!--<div class="title">{{ msg }}</div>-->
+    <section ng-show="seatOne.seatStatus!=='null'" >
+      <div class="title">{{seatOne.rowNum}}排{{seatOne.colNum}}座</div>
+      <div class="title">票面:{{seatOne.originPrice.originPriceNum}}</div>
+      <div>
+        <span class="price-icon" style="background-color:{{seatOne.originPrice.color}}" ></span>
+      </div>
+    </section>
+    
+    <section class="detail-box">
+      <div class="detail">{{seatOne.name}}</div>
+      <div class="detail">排：{{seatOne.rowNum}}</div>
+      <div class="detail">列：{{seatOne.colNum}}</div>      
+      <div class="detail">票面：{{seatOne.originPrice.originPriceNum}}</div>      
+      <div class="detail">状态：{{seatOne.ticketStatus}}</div>      
+    </section>    
+</div>
