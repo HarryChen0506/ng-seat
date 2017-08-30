@@ -94,38 +94,39 @@ angular
         },
         link: function ($scope,element,attrs){
             function calSelectBox(){
-              console.log('触发回掉函数')
-              //先清空之前选中的
-              $scope.seatList.forEach(function(item){
-                  item.forEach(function(item){
-                    item.selected = false;                    
-                  })
-              })
-              //获取父元素的列表
-              // console.log($scope.seatList)
-               var $seatList = $(element).find("div.seat-one"); 
-               for(var i=0; i<$seatList.length; i++){
-                 var $seatOne = $($seatList[i]);
-                //  console.log($($seatOne));
-                 var rowIndex =  $seatOne.attr('data-seatoid').split('-')[0];
-                 var colIndex =  $seatOne.attr('data-seatoid').split('-')[1];                 
-                 if($seatOne.hasClass("seled")){
-                    // console.log(rowIndex,colIndex);
-                    findSeatListChecked(rowIndex,colIndex)
-                 }
-               }
+                // console.log('触发回掉函数')
+                //先清空之前选中的
+                $scope.seatList.forEach(function(item){
+                    item.forEach(function(item){
+                      item.selected = false;                    
+                    })
+                })
+               
+                //遍历每个座位
+                // console.log($scope.seatList)
+                var $seatList = $(element).find("div.seat-one"); 
+                for(var i=0; i<$seatList.length; i++){
+                  var $seatOne = $($seatList[i]);
+                  //  console.log($($seatOne));
+                  var rowIndex =  $seatOne.attr('data-seatoid').split('-')[0];
+                  var colIndex =  $seatOne.attr('data-seatoid').split('-')[1];                 
+                  if($seatOne.hasClass("seled")){
+                      // console.log(rowIndex,colIndex);
+                      //变更模型里的选中状态为true
+                      findSeatListChecked(rowIndex,colIndex)
+                  }
+                }
+                $scope.collectBox();
             }
             function findSeatListChecked(rowIndex,colIndex){
                 $scope.seatList.forEach(function(item){
                   item.forEach(function(item){
                     if(rowIndex==item.rowIndex && colIndex==item.colIndex){
-                      console.log(rowIndex,colIndex,item)
+                      // console.log(rowIndex,colIndex,item)
                       item.selected =true;
                     }
                   })
                 })
-
-                $scope.collectBox();
             }
              
               // console.log('自定义组件');
@@ -211,18 +212,7 @@ angular
                           }
                       }  
                   }) 
-                  // // 右键取消所选
-                  $(element).on("contextmenu", function(){
-                      // console.log('鼠标右键')            
-                      var $seatList = $(this).find("div.seat-one"); 
-                      for(var i=0; i<$seatList.length; i++){                  
-                          $($seatList[i]).removeClass("seled")                    
-                      }
-                      //触发回调            
-                      // value.methods() 
-                      calSelectBox();
-                      $seatList = null, _x = null, _y = null, $selDiv = null, startX = null, startY = null, evt = null; 
-                  })
+                  
                   $('body').on('mouseup',function (){
                       console.log('mouseup')
                       isSelect = false; 
@@ -256,7 +246,19 @@ angular
                   }
                   //触发回调            
                   calSelectBox();
-              })              
+              })    
+              // 右键取消所选
+              $(element).on("contextmenu", function(){
+                  // console.log('鼠标右键')            
+                  var $seatList = $(this).find("div.seat-one"); 
+                  for(var i=0; i<$seatList.length; i++){                  
+                      $($seatList[i]).removeClass("seled")                    
+                  }
+                  //触发回调            
+                  // value.methods() 
+                  calSelectBox();
+                  $seatList = null; 
+              })          
         }
       }
   })
