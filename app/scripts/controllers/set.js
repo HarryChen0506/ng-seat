@@ -104,7 +104,7 @@ angular.module('ngSeatApp')
                     }                    
                 })
             }) 
-           console.log($scope.main.selectedList);
+        //    console.log($scope.main.selectedList);
         }
         //重置行与列
         $scope.resetRowCol = function(){
@@ -160,6 +160,13 @@ angular.module('ngSeatApp')
             })
             $scope.calSelectedList();
        }
+
+
+
+
+
+
+
 
        
         function init(){

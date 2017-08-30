@@ -13,14 +13,7 @@
                                  ng-repeat ="itemCol in itemRow track by $index"
                                  ng-click="selectSeat(itemCol)"
                                  >
-                                <seat seat-one="itemCol"
-                                      :name="itemCol.name" 
-                                      :origin-price="itemCol.originPrice"  
-                                      :row-num="itemCol.rowNum" 
-                                      :col-num="itemCol.colNum"
-                                      :seat-status="itemCol.seatStatus"
-                                      :ticket-status="itemCol.ticketStatus">
-                                </seat>
+                                <seat seat-one="itemCol"></seat>
                             </div>
                         </div>
                     </div>                   
