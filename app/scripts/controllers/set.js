@@ -90,21 +90,23 @@ angular.module('ngSeatApp')
             }        
         }
         $scope.selectSeat = function (seat){
-             seat.selected = !seat.selected;
+            //  seat.selected = !seat.selected;
             //  console.log(seat)
-             $scope.calSelectedList();
+            //  $scope.calSelectedList();
         }
         $scope.calSelectedList = function (){
+            // console.log($scope.main.seatList);
             //计算选中的座位
             $scope.main.selectedList = [];
             $scope.main.seatList.forEach(function (item){
                 item.forEach(function (seat){
                     if(seat.selected){
+                        // console.log(seat);
                         $scope.main.selectedList.push(seat)
                     }                    
                 })
             }) 
-        //    console.log($scope.main.selectedList);
+           console.log($scope.main.selectedList);
         }
         //重置行与列
         $scope.resetRowCol = function(){
@@ -159,6 +161,11 @@ angular.module('ngSeatApp')
                 item.selected = false
             })
             $scope.calSelectedList();
+       }
+       //自定义指令收集选中的盒子
+       $scope.collectBox = function (){
+           console.log('父元素收集盒子');           
+           $scope.calSelectedList();
        }
 
 

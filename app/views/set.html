@@ -5,13 +5,15 @@
         <section class="main">
             <div class="left">
                 <h3>座位图</h3><div><button ng-click="cancelSelected()">取消全选</button></div>
-                <div class="seat" id="seat-box" >
+                <div class="seat" id="seat-box" ng-seat-box selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox()">
+                <!--<div class="seat" id="seat-box" selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox(a)">-->
                     <div class="seat-container">
                          <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index">
                             <div class="seat-one"
                                  ng-class="{ checked: itemCol.selected}"
                                  ng-repeat ="itemCol in itemRow track by $index"
                                  ng-click="selectSeat(itemCol)"
+                                 data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
                                  >
                                 <seat seat-one="itemCol"></seat>
                             </div>
