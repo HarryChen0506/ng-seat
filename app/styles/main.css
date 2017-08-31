@@ -133,7 +133,8 @@ body {
     }
     .main .left .seat .seat-container .seat-row .seat-one {
           /*display: inline-block;*/
-          min-width: 50px;
+          /*min-width: 50px;*/
+          width: 50px;
           height: 50px;
           background-color: #EEF0F4;
           color: #7B83A8;

@@ -4,7 +4,12 @@
         </section>
         <section class="main">
             <div class="left">
-                <h3>座位图</h3><div><button ng-click="cancelSelected()">取消全选</button></div>
+                <h3>座位图</h3>
+                <div>
+                    <button ng-click="cancelSelected()">取消全选</button>
+                    <button ng-click="zoomIn()">放大</button>
+                    <button ng-click="zoomOut()">缩小</button>
+                </div>
                 <div class="seat" id="seat-box" ng-seat-box selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox()">
                 <!--<div class="seat" id="seat-box" selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox(a)">-->
                     <div class="seat-container">
@@ -13,6 +18,7 @@
                                  ng-repeat ="itemCol in itemRow track by $index"
                                  ng-click="selectSeat(itemCol)"
                                  data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
+                                 style="width:{{ui.size}}px; height:{{ui.size}}px"
                                  >
                                 <seat seat-one="itemCol"></seat>
                             </div>

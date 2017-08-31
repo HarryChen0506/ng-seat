@@ -76,6 +76,22 @@ angular.module('ngSeatApp')
                 color: ''               
             }
         };
+        //ui相关的配置
+        $scope.ui = {
+            size: 50
+        }
+        //放大
+        $scope.zoomIn = function (){
+            if($scope.ui.size<80){
+                $scope.ui.size +=10
+            }
+        }
+        //缩小
+        $scope.zoomOut = function (){
+            if($scope.ui.size>20){
+                $scope.ui.size -=10
+            }
+        }
         $scope.initTable = function(row,col){
             $scope.main.seatList = [];
             for(var i=0; i<row; i++){
