@@ -64,6 +64,65 @@ angular
       //  $urlRouterProvider.otherwise("/404");
       }
   ])
+  .controller('appCtrl',['$scope','$timeout',function ($scope,$timeout){
+      //disabled UM editor 上传功能
+      // UMEDITOR_CONFIG.imageUrl = "javascript:return false;";
+      //loading
+      $scope.loading = false;
+      //回调对话框
+      $scope.confCallbackMsg = {};
+      $scope.confCallbackMsg.showMsg = function (msg,next) {
+        $scope.confCallbackMsg.msg =msg;
+        $scope.confCallbackMsg.open = true;
+        $scope.confCallbackMsg.close = function () {
+          $scope.confCallbackMsg.open = false;
+          if(next && typeof next == 'function'){
+            next();
+          }
+        }
+      } 
+      $scope.message ={}
+      $scope.showMsg = function (msg,noDown) {
+        
+         $scope.message.msg = msg;
+         $scope.message.open = true;
+         //如果没有noDown,就开启倒计时
+         if(!noDown){
+           $timeout(function () {
+             $scope.closeMsg();
+           },1000)
+         }
+       };
+       $scope.closeMsg = function () {
+         $scope.message.open = false;
+       }
+      
+      
+      //时间的格式转化
+    Date.prototype.format = function(format) {
+       var date = {
+              "M+": this.getMonth() + 1,
+              "d+": this.getDate(),
+              "h+": this.getHours(),
+              "m+": this.getMinutes(),
+              "s+": this.getSeconds(),
+              "q+": Math.floor((this.getMonth() + 3) / 3),
+              "S+": this.getMilliseconds()
+       };
+       if (/(y+)/i.test(format)) {
+              format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+       }
+       for (var k in date) {
+              if (new RegExp("(" + k + ")").test(format)) {
+                     format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                            ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+              }
+       }
+       return format;
+    } 
+    // console.log(new Date().format('yyyy-MM-dd hh:mm:ss'));   
+
+  }])
   
   .directive('seat', function () {
     return{

@@ -13,7 +13,7 @@
             <div class="left-container">
                 <div class="seat-msg">
                         <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index">
-                            <div class="seat-one" ng-click="setRowInfo(itemRow[0])">
+                            <div class="seat-one" style="width:{{ui.size}}px; height:{{ui.size}}px" ng-click="setRowInfo(itemRow[0])">
                                 <p>行标记: {{itemRow[0].rowInfo}}</p>
                                 <p>偏移: {{itemRow[0].isOffset}}</p>
                             </div>
@@ -22,7 +22,7 @@
                 <div class="seat" id="seat-box" ng-seat-box selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox()">
                 <!--<div class="seat" id="seat-box" selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox(a)">-->                    
                     <div class="seat-container">
-                        <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index" data="{{itemRow[0].rowIndex}}">
+                        <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index" style="margin-left:{{itemRow[0].isOffset=='true'?ui.size/2:0}}px" data="{{itemRow[0].rowIndex}}">
                             <div class="seat-one"                                 
                                 ng-repeat ="itemCol in itemRow track by $index"
                                 ng-click="selectSeat(itemCol)"
@@ -142,4 +142,37 @@
 
         </div>
     </section>
+    <!--查看-->
+    <div class="rule " ng-if="result_box_flag" style="z-index: 999" >   
+        <div class="juqi_alert_box" style="width:42%">
+        <div class="headbox">设置行信息
+            <span style="font-weight: bold"></span><span class="close m_right_20" ng-click="close_result_box()">X</span>
+        </div>
+        <div style="padding:20px 30px 0px 40px;font-size: 12px">        
+            <div class="" style="margin-bottom: 0">                
+                <ul class="box of_h" style="padding:15px 0">               
+                    <li class="box-one f_left" style="width:400px;">
+                        <span class="m_right_5" style="display:inline-block;width:100px;">备注</span>
+                        <input type="text" ng-model="selectedSeatInfo.rowInfo">
+                    </li>
+                    <li class="box-one f_left" style="width:400px;margin-top:10px">
+                        <span class="m_right_5" style="display:inline-block;width:100px;">是否偏移</span>
+                        <!--<input type="radio" ng-model="main.seatSet.seatInfo.isOffset">-->
+                        <select  class="juqi_select m_left_10" ng-model="selectedSeatInfo.isOffset" style="width:120px;">
+                            <option value="">--是否偏移--</option>
+                            <option value="true">是</option>
+                            <option value="false">否</option>
+                        </select>
+                    </li>                    
+                </ul>
+            </div>                  
+        </div>      
+        <div style="padding:20px 30px 0px 30px">
+            <!--<button type="button" class="btn btn-success m_left_10" ng-click="confirm_seatInfo()">确定</button>-->
+            <button type="button" class="btn btn-info m_left_10" ng-click="close_result_box()">关闭</button>
+        </div>      
+        </div>  
+    </div>
+
+     
 </div>

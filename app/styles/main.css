@@ -96,6 +96,9 @@ body {
     .m_r_10 { 
         margin-right: 10px
     }
+    .m_right_20 {
+       margin-right: 20px
+    }
 
     /*.container {
         width: 1000px;
@@ -250,3 +253,169 @@ body {
         color: #fff;
         border-radius: 4px;
       }
+
+
+
+   /*公用组件*/
+/*对话框 rule*/
+.rule {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+.juqi_alert_box {
+    background: #FFF;
+    border-radius: 6px;
+    width: 50%;
+    margin: 10% auto 0;
+    padding: 0 0 40px;
+    font-size: 12px;
+}
+.juqi_alert_box .headbox {
+    min-height: 60px;
+    background: #F6F9FE;
+    border-radius: 6px;
+    padding-top: 20px;
+    padding-left: 40px;
+    font-size: 14px;
+    font-weight: 700;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+/*对话框弹出层*/
+.ConfMsg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+.ConfMsg-back {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+.ConfMsg-content {
+  width: 372px;
+  padding: 10px 20px 50px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);    /* for Chrome || Safari */
+  -moz-transform: translate(-50%, -50%);       /* for Firefox */
+  -ms-transform: translate(-50%, -50%);        /* for IE */
+  -o-transform: translate(-50%, -50%);         /* for Opera */
+  transform: translate(-50%, -50%);
+}
+.ConfMsg-content .warning {
+  padding: 15px 0 0 0;
+  margin-bottom: 0;
+}
+.ConfMsg-content .warning i {
+  display: inline-block;
+  width: 63px;
+  height: 55px;
+  background: url('../images/warning.PNG');
+}
+.ConfMsg-content .msg {
+  padding: 20px 0 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: #272536;
+  line-height: 24px;
+}
+
+/*模态框组件*/
+.confirmModal .modal-sm {
+  width: 650px;
+}
+.confirmModal .modal-content {
+  margin-top: 40%;
+}
+.confirmModal .content {
+  padding: 40px 80px;
+  /*background: pink;*/
+}
+.confirmModal .content p{
+  padding-left: 60px;
+  position: relative;
+  margin-bottom: 0;
+  line-height: 40px;
+  font-size: 16px;
+}
+.confirmModal .content i {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  display: inline-block;
+  margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  /*background: url('../images/seller-sprit.png') -3px -144px no-repeat ;*/
+  vertical-align: bottom;
+}
+.confirmModal .modal-footer {
+  padding: 0 0 35px 0;
+  text-align: center;
+  border: none;
+}
+/*loading*/
+.modal-loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.modal-loading-back {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+.modal-loading-content {
+    width: 66px;
+    height: 66px;
+    background: url(../images/loading.gif) no-repeat;
+    background-size: 66px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

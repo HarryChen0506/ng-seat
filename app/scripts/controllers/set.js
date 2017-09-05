@@ -24,7 +24,7 @@ angular.module('ngSeatApp')
                 rowNum: '',
                 colNum:'',
                 rowInfo:'', //行标注
-                isOffset: false,  //是否偏移半个座位
+                isOffset: 'false',  //是否偏移半个座位
                 seatStatus: 'null',
                 ticketStatus: 'none',
                 originPrice: {
@@ -75,7 +75,7 @@ angular.module('ngSeatApp')
                 originPriceList: [],
                 originPriceNum: 0,
                 colorList: ['#ff5722','#03a9f4','#8bc34a','#9c27b0'],
-                color: ''               
+                color: ''                    
             }
         };
         //ui相关的配置
@@ -186,10 +186,25 @@ angular.module('ngSeatApp')
            $scope.calSelectedList();
        }
        //设置行信息（几排和是否偏移半个座位）
+       $scope.result_box_flag = false;
+       $scope.selectedSeatInfo = null;
        $scope.setRowInfo = function (seat){
            console.log(seat);
-           
+           $scope.selectedSeatInfo = seat;
+            //    $scope.confCallbackMsg.showMsg('选座')
+            $scope.result_box_flag = true;
        }
+       $scope.close_result_box = function (){
+            $scope.result_box_flag = false;
+            $scope.selectedSeatInfo = null;
+       }
+       //设置信息-确定
+       $scope.confirm_seatInfo = function (){
+           $scope.selectedSeatInfo.rowInfo = $scope.main.seatSet.seatInfo.rowIndex;
+           $scope.selectedSeatInfo.isOffset = $scope.main.seatSet.seatInfo.isOffset;
+           $scope.close_result_box();
+       }
+       
 
 
 
@@ -202,5 +217,6 @@ angular.module('ngSeatApp')
             $scope.initTable($scope.main.row, $scope.main.col);
         }
         init();
+        
 
   }]);

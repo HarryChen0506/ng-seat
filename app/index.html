@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="ngSeatApp">
+  <body ng-app="ngSeatApp" ng-controller="appCtrl">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -42,7 +42,24 @@
     </div>
 
     <div class="container">
-        <div ui-view> </div>
+        <div ui-view> </div>        
+    </div>
+
+      <!--回掉对话框-->
+    <div ng-if="loading" class="modal-loading">
+        <div class="modal-loading-back"></div>
+        <div class="modal-loading-content"></div>
+    </div> 
+    <div class="ConfMsg" ng-cloak ng-if="confCallbackMsg.open">
+        <div class="ConfMsg-back"></div>
+        <div class="ConfMsg-content">
+            <p><span class="close" ng-click="confCallbackMsg.close()">X</span></p>
+            <p class="warning"><i></i></p>
+            <div class="msg"><span>{{confCallbackMsg.msg}}</span></div>
+            <div class="ConfMsg-footer">
+                <button type="button" class="btn btn-success" ng-click="confCallbackMsg.close()">确定</button>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
