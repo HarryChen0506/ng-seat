@@ -1,134 +1,145 @@
 <div class="">
-        <section class="top">
-            <h3>{{main.title}}</h3>
-        </section>
-        <section class="main">
-            <div class="left">
-                <h3>座位图</h3>
-                <div>
-                    <button ng-click="cancelSelected()">取消全选</button>
-                    <button ng-click="zoomIn()">放大</button>
-                    <button ng-click="zoomOut()">缩小</button>
+    <section class="top">
+        <h3>{{main.title}}</h3>
+    </section>
+    <section class="main">
+        <div class="left">
+            <h3>座位图</h3>
+            <div>
+                <button ng-click="cancelSelected()">取消全选</button>
+                <button ng-click="zoomIn()">放大</button>
+                <button ng-click="zoomOut()">缩小</button>
+            </div>
+            <div class="left-container">
+                <div class="seat-msg">
+                        <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index">
+                            <div class="seat-one" ng-click="setRowInfo(itemRow[0])">
+                                <p>行标记: {{itemRow[0].rowInfo}}</p>
+                                <p>偏移: {{itemRow[0].isOffset}}</p>
+                            </div>
+                        </div>
                 </div>
                 <div class="seat" id="seat-box" ng-seat-box selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox()">
-                <!--<div class="seat" id="seat-box" selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox(a)">-->
+                <!--<div class="seat" id="seat-box" selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox(a)">-->                    
                     <div class="seat-container">
-                         <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index">
+                        <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index" data="{{itemRow[0].rowIndex}}">
                             <div class="seat-one"                                 
-                                 ng-repeat ="itemCol in itemRow track by $index"
-                                 ng-click="selectSeat(itemCol)"
-                                 data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
-                                 style="width:{{ui.size}}px; height:{{ui.size}}px"
-                                 >
+                                ng-repeat ="itemCol in itemRow track by $index"
+                                ng-click="selectSeat(itemCol)"
+                                data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
+                                style="width:{{ui.size}}px; height:{{ui.size}}px"
+                                >
                                 <seat seat-one="itemCol"></seat>
                             </div>
                         </div>
                     </div>                   
                 </div>
-                <div>
-                    <pre>{{main.selectedList}}</pre>                    
-                    <div style="display:block; max-height:150px; overflow:auto"><pre >{{main.seatSet}}</pre></div>
+            </div>
+            
+            <div>
+                <pre>{{main.selectedList}}</pre>                    
+                <div style="display:block; max-height:150px; overflow:auto"><pre >{{main.seatSet}}</pre></div>
+            </div>
+
+        </div>
+        <div class="right">
+            <div class="seat-config">
+                <h3>行与列配置</h3>
+                <section class="row">
+                    <div class="header">行与列</div>
+                    <div class="box">
+                        <input class="f-l" type="text" placeholder="行" ng-model="main.row">
+                        <input class="f-l" type="text" placeholder="列" ng-model="main.col">
+                        <button class="f-l" ng-click="resetRowCol()">重置</button>
+                    </div>
+                </section>  
+            </div>  
+            <div class="seat-config">
+                    <h3>座位设置</h3>
+                    <section class="row">
+                    <div class="header">排</div>
+                    <div class="box">
+                        <input class="f-l" type="number" placeholder="行" ng-model="main.seatSet.seat.rowNum">                           
+                    </div>
+                </section>
+                <section class="row">
+                    <div class="header">座</div>
+                    <div class="box">
+                        <input class="f-l" type="number" placeholder="行" ng-model="main.seatSet.seat.colNum_from">
+                        <span class="f-l" style="margin-right:10px">To</span>
+                        <input class="f-l" type="number" placeholder="行" ng-model="main.seatSet.seat.colNum_to">                          
+                    </div>
+                </section>  
+                <section class="row">
+                    <div class="header">状态</div>
+                    <div class="box">                            
+                        <select ng-model="main.seatSet.seat.seatStatus"  ng-options="opt.value as opt.name for opt in main.seatSet.seatStatusList">
+                            <option value="">座位状态</option>
+                        </select>                   
+                    </div>                        
+                </section>                                   
+                <div class="btn-group">
+                    <button ng-click="setSeatTable()">确定</button>
+                </div>
+            </div>
+            <div class="seat-config">
+                    <h3>票面设置</h3>
+                    <section class="row">
+                    <div class="header">票面属性</div>
+                    <div class="box">
+                        <input class="f-l" type="number" placeholder="票面" ng-model="main.seatSet.originPriceNum">                           
+                        <select ng-model="main.seatSet.color" ng-options=" opt for opt in main.seatSet.colorList">                                
+                            <option value="">请选择颜色</option>
+                        </select>  
+                        <button ng-click="addOriginPrice()">添加</button>                      
+                    </div>
+                </section>                                                      
+                <div class="btn-group">
+                    <ul>
+                        <li ng-repeat="item in main.seatSet.originPriceList track by $index">
+                            <span class="m_r_10">票面:{{item.originPriceNum}}</span>
+                            <span class="m_r_10">颜色:{{item.color}}</span>
+                            <button ng-click="removeOriginPrice(item, main.seatSet.originPriceList)">删除</button>
+                        </li>
+                    </ul>
+                </div>
+                <section class="row">
+                    <div class="header">票面</div>
+                    <div class="box">
+                        <!--<input class="f-l" type="number" placeholder="行" v-model="seatSet.seat.originPrice">  -->
+                        <!--<select v-model="seatSet.originPrice">
+                            <option v-for="option in seatSet.originPriceList" v-bind:value="option">
+                                {{ option.originPriceNum }}
+                            </option>
+                        </select> -->
+                        <select ng-model="main.seatSet.originPrice" ng-options="opt as opt.originPriceNum for opt in main.seatSet.originPriceList">                                
+                            <option value="">请选择票面</option>
+                        </select>                         
+                    </div>
+                </section>                                     
+                <div class="btn-group">
+                    <button ng-click="setSeatOriginPrice()">确定</button>
                 </div>
 
-            </div>
-            <div class="right">
-                <div class="seat-config">
-                    <h3>行与列配置</h3>
-                    <section class="row">
-                        <div class="header">行与列</div>
-                        <div class="box">
-                            <input class="f-l" type="text" placeholder="行" ng-model="main.row">
-                            <input class="f-l" type="text" placeholder="列" ng-model="main.col">
-                            <button class="f-l" ng-click="resetRowCol()">重置</button>
-                        </div>
-                    </section>  
-                </div>  
-                <div class="seat-config">
-                     <h3>座位设置</h3>
-                     <section class="row">
-                        <div class="header">排</div>
-                        <div class="box">
-                            <input class="f-l" type="number" placeholder="行" ng-model="main.seatSet.seat.rowNum">                           
-                        </div>
-                    </section>
-                    <section class="row">
-                        <div class="header">座</div>
-                        <div class="box">
-                            <input class="f-l" type="number" placeholder="行" ng-model="main.seatSet.seat.colNum_from">
-                            <span class="f-l" style="margin-right:10px">To</span>
-                            <input class="f-l" type="number" placeholder="行" ng-model="main.seatSet.seat.colNum_to">                          
-                        </div>
-                    </section>  
-                    <section class="row">
-                        <div class="header">状态</div>
-                        <div class="box">                            
-                            <select ng-model="main.seatSet.seat.seatStatus"  ng-options="opt.value as opt.name for opt in main.seatSet.seatStatusList">
-                                <option value="">座位状态</option>
-                            </select>                   
-                        </div>                        
-                    </section>                                   
-                    <div class="btn-group">
-                        <button ng-click="setSeatTable()">确定</button>
+            </div>                   
+            <div class="seat-config">
+                    <h3>售票设置</h3>
+                <section class="row">
+                    <div class="header">状态</div>
+                    <div class="box">
+                            <select ng-model="main.seatSet.ticketStatus"  ng-options="opt.value as opt.name for opt in main.seatSet.ticketStatusList">
+                            <option value="">售票状态</option>
+                        </select>                      
                     </div>
+                </section>                    
+                <div class="btn-group">
+                    <button ng-click="setSeatTicketStatus()">确定</button>
                 </div>
-                <div class="seat-config">
-                     <h3>票面设置</h3>
-                     <section class="row">
-                        <div class="header">票面属性</div>
-                        <div class="box">
-                            <input class="f-l" type="number" placeholder="票面" ng-model="main.seatSet.originPriceNum">                           
-                            <select ng-model="main.seatSet.color" ng-options=" opt for opt in main.seatSet.colorList">                                
-                                <option value="">请选择颜色</option>
-                            </select>  
-                            <button ng-click="addOriginPrice()">添加</button>                      
-                        </div>
-                    </section>                                                      
-                    <div class="btn-group">
-                        <ul>
-                            <li ng-repeat="item in main.seatSet.originPriceList track by $index">
-                                <span class="m_r_10">票面:{{item.originPriceNum}}</span>
-                                <span class="m_r_10">颜色:{{item.color}}</span>
-                                <button ng-click="removeOriginPrice(item, main.seatSet.originPriceList)">删除</button>
-                            </li>
-                        </ul>
-                    </div>
-                    <section class="row">
-                        <div class="header">票面</div>
-                        <div class="box">
-                            <!--<input class="f-l" type="number" placeholder="行" v-model="seatSet.seat.originPrice">  -->
-                            <!--<select v-model="seatSet.originPrice">
-                                <option v-for="option in seatSet.originPriceList" v-bind:value="option">
-                                    {{ option.originPriceNum }}
-                                </option>
-                            </select> -->
-                            <select ng-model="main.seatSet.originPrice" ng-options="opt as opt.originPriceNum for opt in main.seatSet.originPriceList">                                
-                                <option value="">请选择票面</option>
-                            </select>                         
-                        </div>
-                    </section>                                     
-                    <div class="btn-group">
-                        <button ng-click="setSeatOriginPrice()">确定</button>
-                    </div>
+            </div>                
+            <div style="display:block; max-height:150px; overflow:auto"><pre >{{seatSet}}</pre></div>
 
-                </div>                   
-                <div class="seat-config">
-                     <h3>售票设置</h3>
-                    <section class="row">
-                        <div class="header">状态</div>
-                        <div class="box">
-                             <select ng-model="main.seatSet.ticketStatus"  ng-options="opt.value as opt.name for opt in main.seatSet.ticketStatusList">
-                                <option value="">售票状态</option>
-                            </select>                      
-                        </div>
-                    </section>                    
-                    <div class="btn-group">
-                        <button ng-click="setSeatTicketStatus()">确定</button>
-                    </div>
-                </div>                
-                <div style="display:block; max-height:150px; overflow:auto"><pre >{{seatSet}}</pre></div>
+            
 
-                
-
-            </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>

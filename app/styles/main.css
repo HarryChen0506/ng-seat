@@ -113,23 +113,51 @@ body {
     }
     .main .left {
           flex: 1;
-          overflow: hidden;
-            
+          overflow: hidden;            
+    }
+    .main .left .left-container {
+        display: flex;
+    }
+    .main .left .left-container .seat-msg {
+        /*width: 50px;*/
+    }
+    .main .left .left-container .seat-msg .seat-row {
+        display: flex;
+    }
+    .main .left .left-container .seat-msg .seat-one {
+          width: 50px;
+          height: 50px;
+          background-color: pink;
+          color: #7B83A8;
+          margin: 5px;  
+    }
+    .main .left .left-container .seat-msg .seat-one p {
+      font-size: 8px
+    }
+    .main .left .left-container .seat {
+       flex:1
     }
     .main .left .seat {
             overflow: scroll;
             text-align: left;
             border: 1px solid #000;
             height: 400px;
-            max-width:100%;                           
+            max-width:100%;                       
     }
+    
+    /*.main .left .seat .seat-msg .seat-one{
+          width: 50px;
+          height: 50px;
+          background-color: pink;
+          color: #7B83A8;
+          margin: 5px;  
+    }*/
     .main .left .seat .seat-container {                    
                     
     }    
     .main .left .seat .seat-container .seat-row {
             display: flex;
-            flex-wrap: nowrap;
-            
+            flex-wrap: nowrap;            
     }
     .main .left .seat .seat-container .seat-row .seat-one {
           /*display: inline-block;*/

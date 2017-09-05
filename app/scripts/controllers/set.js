@@ -23,6 +23,8 @@ angular.module('ngSeatApp')
                 colIndex: '',
                 rowNum: '',
                 colNum:'',
+                rowInfo:'', //行标注
+                isOffset: false,  //是否偏移半个座位
                 seatStatus: 'null',
                 ticketStatus: 'none',
                 originPrice: {
@@ -183,7 +185,11 @@ angular.module('ngSeatApp')
            console.log('父元素收集盒子');           
            $scope.calSelectedList();
        }
-
+       //设置行信息（几排和是否偏移半个座位）
+       $scope.setRowInfo = function (seat){
+           console.log(seat);
+           
+       }
 
 
 
