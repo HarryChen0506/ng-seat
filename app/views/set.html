@@ -11,26 +11,35 @@
                 <button ng-click="zoomOut()">缩小</button>
             </div>
             <div class="left-container">
-                <div class="seat-msg">
+                <!--<div class="seat-msg">
                         <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index">
                             <div class="seat-one" style="width:{{ui.size}}px; height:{{ui.size}}px" ng-click="setRowInfo(itemRow[0])">
                                 <p>行标记: {{itemRow[0].rowInfo}}</p>
                                 <p>偏移: {{itemRow[0].isOffset}}</p>
                             </div>
                         </div>
-                </div>
-                <div class="seat" id="seat-box" ng-seat-box selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox()">
+                </div>-->
+                <div class="seat" id="seat-box" ng-seat-box selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox()" style="padding-left:100px">
                 <!--<div class="seat" id="seat-box" selected-list="main.selectedList" seat-list="main.seatList" collect-box="collectBox(a)">-->                    
                     <div class="seat-container">
-                        <div class="seat-row" ng-repeat="itemRow in main.seatList track by $index" style="margin-left:{{itemRow[0].isOffset=='true'?ui.size/2:0}}px" data="{{itemRow[0].rowIndex}}">
-                            <div class="seat-one"                                 
-                                ng-repeat ="itemCol in itemRow track by $index"
-                                ng-click="selectSeat(itemCol)"
-                                data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
-                                style="width:{{ui.size}}px; height:{{ui.size}}px"
-                                >
-                                <seat seat-one="itemCol"></seat>
+                        <div class="" ng-repeat="itemRow in main.seatList track by $index" style="position:relative" data="{{itemRow[0].rowIndex}}">
+                            <div style="position: absolute; top: 0px; left:-{{ui.size+20}}px">
+                                <div class="seat-info" style="width:{{ui.size}}px; height:{{ui.size}}px" ng-click="setRowInfo(itemRow[0])">
+                                    <p>行标记: {{itemRow[0].rowInfo}}</p>
+                                    <p>偏移: {{itemRow[0].isOffset}}</p>
+                                </div>
                             </div>
+                            <div  class="seat-row"  style="margin-left:{{itemRow[0].isOffset=='true'?ui.size/2:0}}px; ">
+                                <div class="seat-one"                                 
+                                    ng-repeat ="itemCol in itemRow track by $index"
+                                    ng-click="selectSeat(itemCol)"
+                                    data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
+                                    style="width:{{ui.size}}px; height:{{ui.size}}px"
+                                    >
+                                    <seat seat-one="itemCol"></seat>
+                                </div>
+                            </div>
+                           
                         </div>
                     </div>                   
                 </div>
