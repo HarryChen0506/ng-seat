@@ -427,11 +427,10 @@ body {
 .sale .main {
     display: flex;
 }
-.sale .main .left {
-  height: 100px;
+.sale .main .main-left {.
   background-color: #f5f5f5;
 }
-.sale .main .right {
+.sale .main .main-right {
   width:280px;
   background-color: #fff;
 }
@@ -545,4 +544,75 @@ body {
 }
 .sale .seat-plan .seat-img.seat-selected {
     background-position: -60px 0;
+}
+.sale .seat-plan .seat-img.seat-occupied {
+    background-position: -40px 0;
+}
+.sale .seat-plan .seat-img.seat-couple {
+    background-position: -20px 0;
+}
+.sale .seat-plan  .seat-matrix {
+    clear: both;
+    position: relative;
+    min-height: 200px;
+}
+.sale .seat-plan  .seat-matrix ul {
+    position: absolute;
+    left: 0;
+    top: 30px;
+}
+.sale .seat-plan  .seat-matrix ul li {
+    height: 28px;
+    line-height: 28px;
+    color: #999;
+    margin: 0 0 0 32px;
+}
+.sale .seat-plan .seat-matrix .matrix-body {
+    width: 80%;
+    margin: 0 auto;
+    overflow: auto;
+    overflow-y: hidden;
+    position: relative;
+}
+.sale .seat-plan .seat-matrix .matrix-body table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-bottom: 26px;
+}
+.sale .seat-plan .seat-matrix .matrix-body table tbody {
+    text-align: center;
+}
+.sale .seat-plan .seat-matrix .matrix-body table tr td {
+    padding: 4px;
+}
+.sale .seat-plan .seat-matrix .matrix-body table tbody tr td.cent {
+    width: 100%;
+    height: 30px;
+    padding: 0;
+}
+.sale .seat-plan .seat-matrix .matrix-body .seat {
+    /*background: url(../images/seat.png) no-repeat -9999px -9999px;*/
+    height: 20px;
+    width: 20px;
+    /*display: block;
+    text-indent: -9999px;
+    position: relative;
+    outline: 0;
+    z-index: 20;*/
+
+    background: url(../images/seat.png) no-repeat  -9999px -9999px;
+    display: block;
+
+}
+.sale .seat-plan .seat-matrix .matrix-body .seat.seat-enabled {
+    background-position: 0 0;
+}
+.sale .seat-plan .seat-matrix .matrix-body .seat.seat-selected {
+    background-position: -60px 0;
+}
+.sale .seat-plan .seat-matrix .matrix-body .seat.seat-occupied {
+    background-position: -40px 0;
+}
+.sale .seat-plan .seat-matrix .matrix-body .seat.seat-couple {
+    background-position: -20px 0;
 }
