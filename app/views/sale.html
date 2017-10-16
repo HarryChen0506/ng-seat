@@ -7,7 +7,7 @@
         <div class="main">
             <div class="main-left">
                 <div class="seat-plan">
-                    <h3>3号厅银幕</h3>
+                    <h3>3号厅舞台</h3>
                     <ul class="legend">
                         <li class="seat-img seat-enabled">
                             <span>可选</span>
@@ -267,7 +267,8 @@
                                     <tr ng-repeat="row in main.ticketList">
                                          <td ng-repeat="seat in row">
                                              <span                                                
-                                                ng-class="{'seat': seat.seatStatus==='seat',
+                                                ng-class="{
+                                                    'seat': seat.seatStatus==='seat',
                                                     'seat-enabled':seat.ticketStatus==='valid'||seat.ticketStatus==='none',
                                                     'seat-occupied':seat.ticketStatus==='soldout',
                                                     'seat-selected':seat.selected
@@ -328,22 +329,23 @@
                         <table>
                             <tbody>
                             <tr>
-                                <td class="sub">座位</td>
+                                <td class="sub"><div>座位</div></td>
                                 <td>
                                     <div class="overflow">
                                         <div class="seat-container J_seat_container seat-container-on">
-                                            <span><em>E排14座</em></span>
-                                            <span><em>F排14座</em></span>
-                                            <span><em>G排14座</em></span>
-                                            <span><em>G排15座</em></span>
-                                            <span><em>H排14座</em></span>
+
+
+                                            <span ng-repeat="seat in main.selectedSeat">
+                                                <em>{{seat.rowNum}}排{{seat.colNum}}座</em>
+                                            </span>
+                                           
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr class="last">
-                                <td class="sub">总计</td>
-                                <td class="price-info J_price"><strong>¥270</strong></td>
+                                <td class="sub"><div>总计</div></td>
+                                <td class="price-info J_price"><strong>¥{{main.totalPrice}}</strong></td>
                             </tr>
                             </tbody>
                         </table>

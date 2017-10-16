@@ -460,6 +460,8 @@ body {
 .sale .main .seatinfo-box .item .sub {
     color: #999;
     padding-right: 9px;
+    width:40px;
+    display: block
 }
 .sale .main .seatinfo-box .item tr td {
     padding-bottom: 9px;
