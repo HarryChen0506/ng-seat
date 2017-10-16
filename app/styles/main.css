@@ -421,3 +421,128 @@ body {
 }
 
 /*sale 售票页面*/
+.sale {
+
+}
+.sale .main {
+    display: flex;
+}
+.sale .main .left {
+  height: 100px;
+  background-color: #f5f5f5;
+}
+.sale .main .right {
+  width:280px;
+  background-color: #fff;
+}
+.sale .main .seatinfo-box {
+    padding: 0 20px;
+    width: 220px;
+    font-family: "宋体";
+    background-color: #fff;
+    border-left: 1px solid #dbdbdb;
+    font-size: 12px;
+}
+
+.sale .main .seatinfo-box .movie-detail { 
+    display: flex
+}
+.sale .main  .seatinfo-box .movie-detail .left-sidebar {
+   margin-right: 10px
+}
+.sale .main .seatinfo-box .movie-detail .cont {
+   
+}
+.sale .main .seatinfo-box .item {
+    padding: 19px 0;
+    border-bottom: 1px dotted #e6e6e6;
+    /*background: pink*/
+}
+.sale .main .seatinfo-box .item .sub {
+    color: #999;
+    padding-right: 9px;
+}
+.sale .main .seatinfo-box .item tr td {
+    padding-bottom: 9px;
+}
+
+.sale .main .seatinfo-box .seat-container.seat-container-on {
+    border: 0;
+    padding: 0;
+    width: 190px;
+}
+.sale .main  .seatinfo-box .seat-container span {
+    display: block;
+    float: left;
+    margin-bottom: 6px;
+    position: relative;
+}
+.sale .main  .seatinfo-box .seat-container span em {
+    background-color: #fff9f2;
+    border: 1px solid #ff8400;
+    padding: 8px 18px;
+    margin-right: 7px;
+    display: block;
+    width: auto;
+    overflow: hidden;
+    font-style: normal;
+    font-weight: normal;
+}
+/*sale 页面 选座*/
+.sale .seat-plan {
+    overflow: hidden;
+    min-height: 512px;
+}
+.sale .seat-plan h3 {
+    background: #fff;
+    border-radius: 5px;
+    line-height: 38px;
+    height: 38px;
+    text-align: center;
+    border: 1px solid #c8c8c8;
+    margin: 25px 28px 0;
+}
+.sale .seat-plan .legend {
+    margin: 18px 0 46px 150px;
+    overflow: hidden;
+    height: 20px;
+    width: auto;
+}
+.sale .seat-plan .legend li {
+    margin-right: 96px;
+    text-indent: 0;
+    float: left;
+    width: 20px;
+    font-size: 0;
+    height: 20px;
+    position: relative;
+}
+.sale .seat-plan .legend li span {
+    line-height: 20px;
+    height: 20px;
+    display: block;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-indent: 7px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+    font-size: 12px;
+    width: 50px;
+}
+.sale .seat-plan .seat-img {
+    background: url(../images/seat.png) no-repeat -9999px -9999px;
+    height: 20px;
+    width: 20px;
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    outline: 0;
+    z-index: 20;
+}
+.sale .seat-plan .seat-img.seat-enabled {
+    background-position: 0 0;
+}
+.sale .seat-plan .seat-img.seat-selected {
+    background-position: -60px 0;
+}
