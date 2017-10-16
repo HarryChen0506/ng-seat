@@ -39,7 +39,7 @@
                         </ul>
                         <div class="matrix-body">
                             <table>
-                                <tbody>
+                                <!--<tbody>
                                     <tr>
                                         <td class="cent" colspan="16"><span>银幕中央<b></b></span><div class="vertical" style="height:336px;margin-bottom:-336px"></div></td>
                                     </tr>                                        
@@ -259,8 +259,30 @@
                                         <td><a href="#" hidefocus="true" class="seat seat-enabled" title="L排14座" data-row="12" data-col="15" data-id="3188715" data-name="L排14座" data-loveflag="0"></a></td>
                                         <td><a href="#" hidefocus="true" class="seat seat-enabled" title="L排15座" data-row="12" data-col="16" data-id="3188679" data-name="L排15座" data-loveflag="0"></a></td>
                                     </tr>
+                                </tbody>-->
+                                <tbody>
+                                    <tr>
+                                        <td class="cent" colspan="16"><span>银幕中央<b></b></span><div class="vertical" style="height:336px;margin-bottom:-336px"></div></td>
+                                    </tr> 
+                                    <tr ng-repeat="row in main.ticketList">
+                                         <td ng-repeat="seat in row">
+                                             <span                                                
+                                                ng-class="{'seat': seat.seatStatus==='seat',
+                                                    'seat-enabled':seat.ticketStatus==='valid'||seat.ticketStatus==='none',
+                                                    'seat-occupied':seat.ticketStatus==='soldout',
+                                                    'seat-selected':seat.selected
+                                                    }"
+                                                title="A排1座"
+                                                data-row="1" 
+                                                data-col="2" 
+                                                data-id="3188643" 
+                                                data-name="A排1座" 
+                                                data-loveflag="0"
+                                                ng-click="showSeatInfo(seat)"
+                                             ></span>
+                                        </td>
+                                    </tr>
                                 </tbody>
-                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
