@@ -58,7 +58,16 @@ angular
               templateUrl: 'views/set.html'
             }
           }
-        })      
+        })   
+        .state('sale',{
+          url: '/sale',
+          views:{
+            "":{
+              controller: 'SaleCtrl',
+              templateUrl: 'views/sale.html'
+            }
+          }
+        })   
 
           
       //  $urlRouterProvider.otherwise("/404");
