@@ -30,19 +30,28 @@
         -ms-flex: 1;              /* IE 10 */
         flex: 1; 
         position: relative;
-        background: pink;        
+        background: pink;  
+        padding: 0 50px;        
     }
     .main-view {
-       /*height: 100%;*/
-        background: yellow;      
+        height: 100%;
+        background: yellow; 
+        padding: 0 50px;
+        position: relative   
     }    
-    .scroll {         
-        /*background: green;*/
-        height: 400px;
+    .scroll {
+        position: absolute;
+        /*width: 100%;  */
+        left:0px;   
+        right:0px;
+        height: 100%;  
+        padding: 0 50px;
+        /*height: 400px;*/
         overflow-y: scroll;
         overflow-x: hidden; 
     }
     .scroll .item {
+         background: orange;
         height: 100px;
         border: 1px solid #000;
         margin: 10px 

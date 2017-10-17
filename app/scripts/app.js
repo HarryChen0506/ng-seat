@@ -370,22 +370,7 @@ angular
                     $scope.onLoading();
                 }
               }              
-           })
-          
-        //    function loading (){
-        //        flag = true;
-        //        console.log('开始下拉加载');
-        //        if(timerId){
-        //           clearTimeout(timerId)
-        //        };
-        //        timerId = setTimeout(function(){
-        //          console.log('可以再次加载')
-                 
-        //          console.log($scope);
-        //          flag = false;
-        //        },3000)
-        //    }
-
+           })       
         }
       }
   })
