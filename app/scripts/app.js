@@ -68,6 +68,15 @@ angular
             }
           }
         })   
+        .state('scroll',{
+          url: '/scroll',
+          views:{
+            "":{
+              controller: 'ScrollCtrl',
+              templateUrl: 'views/scrollDemo.html'
+            }
+          }
+        })   
 
           
       //  $urlRouterProvider.otherwise("/404");
@@ -327,6 +336,56 @@ angular
                   calSelectBox();
                   $seatList = null; 
               })          
+        }
+      }
+  })
+  .directive('scrollLoading',function(){
+     return {
+        restrict: 'EA',
+        scope: { 
+          onLoading: '&'
+        },
+        controller: function ($scope){
+            // console.log('下拉加载组件init')
+        },
+        link: function ($scope,element,attrs){ 
+                   
+          //  $(element).on('click',function(){
+          //     console.log('点击');
+          //     console.log('this',$(this))
+          //  })
+           var distance = 50;
+           var flag = false;
+            var timerId;
+           $(element).bind('scroll',function(){
+              // console.log('滚动')
+              // console.log('内容的高度',$(this)[0].scrollHeight);
+              // console.log('滚动条距离顶部的距离',$(this).scrollTop());
+              // console.log('父元素的高度',$(this).height());
+              var scrollHeight = $(this)[0].scrollHeight;
+              var scrollTop = $(this).scrollTop();
+              var height = $(this).height();
+              if(scrollHeight-scrollTop-height <distance){
+                if(!flag){
+                    loading();
+                }
+              }              
+           })
+          
+           function loading (){
+               flag = true;
+               console.log('开始下拉加载');
+               if(timerId){
+                  clearTimeout(timerId)
+               };
+               timerId = setTimeout(function(){
+                 console.log('可以再次加载')
+                 $scope.onLoading();
+                 console.log($scope);
+                 flag = false;
+               },3000)
+           }
+
         }
       }
   })

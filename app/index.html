@@ -34,6 +34,7 @@
             <ul class="nav navbar-nav">
               <li class="active"><a ui-sref="set">set</a></li>
               <li class="active"><a ui-sref="sale">sale</a></li>
+              <li class="active"><a ui-sref="scroll">scroll</a></li>
               <!--<li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/">Contact</a></li>-->
             </ul>
@@ -42,8 +43,8 @@
       </div>
     </div>
 
-    <div class="container">
-        <div ui-view> </div>        
+    <div class="container view-container">
+        <div ui-view class="main-view"> </div>        
     </div>
 
       <!--回掉对话框-->
@@ -103,6 +104,7 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/set.js"></script>
         <script src="scripts/controllers/sale.js"></script>
+        <script src="scripts/controllers/scroll.js"></script>
         <!-- endbuild -->
 </body>
 </html>

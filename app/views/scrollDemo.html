@@ -1,0 +1,55 @@
+<style>
+    html {
+        width: 100%;
+        height: 100%;
+        -moz-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-size: 62.5%;
+        font-family: sans-serif;
+    }
+    body {       
+        display: -webkit-box; 
+        display: -moz-box; 
+        display:-webkit-flex;
+        display: -ms-flexbox;
+        display:flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+    .header {
+        background: red
+    }
+    .footer {
+        background: blue
+    }
+    .view-container {
+       -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+        -moz-box-flex: 1;         /* OLD - Firefox 19- */       
+        -webkit-flex: 1;          /* Chrome */
+        -ms-flex: 1;              /* IE 10 */
+        flex: 1; 
+        position: relative;
+        background: pink;        
+    }
+    .main-view {
+       /*height: 100%;*/
+        background: yellow;      
+    }    
+    .scroll {         
+        /*background: green;*/
+        height: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden; 
+    }
+    .scroll .item {
+        height: 100px;
+        border: 1px solid #000;
+        margin: 10px 
+    }
+</style>
+
+
+<div class="scroll" id="scroll" scroll-loading on-loading="main.init()">
+    <div class="item" ng-repeat="item in list track by $index">下拉加载更多组件--{{$index}}</div>    
+</div>
