@@ -343,7 +343,9 @@ angular
      return {
         restrict: 'EA',
         scope: { 
-          onLoading: '&'
+          onLoading: '&',
+          distance:'=',
+          flag: '='
         },
         controller: function ($scope){
             // console.log('下拉加载组件init')
@@ -354,9 +356,7 @@ angular
           //     console.log('点击');
           //     console.log('this',$(this))
           //  })
-           var distance = 50;
-           var flag = false;
-            var timerId;
+           var distance = $scope.distance;
            $(element).bind('scroll',function(){
               // console.log('滚动')
               // console.log('内容的高度',$(this)[0].scrollHeight);
@@ -366,25 +366,25 @@ angular
               var scrollTop = $(this).scrollTop();
               var height = $(this).height();
               if(scrollHeight-scrollTop-height <distance){
-                if(!flag){
-                    loading();
+                if(!$scope.flag.load){
+                    $scope.onLoading();
                 }
               }              
            })
           
-           function loading (){
-               flag = true;
-               console.log('开始下拉加载');
-               if(timerId){
-                  clearTimeout(timerId)
-               };
-               timerId = setTimeout(function(){
-                 console.log('可以再次加载')
-                 $scope.onLoading();
-                 console.log($scope);
-                 flag = false;
-               },3000)
-           }
+        //    function loading (){
+        //        flag = true;
+        //        console.log('开始下拉加载');
+        //        if(timerId){
+        //           clearTimeout(timerId)
+        //        };
+        //        timerId = setTimeout(function(){
+        //          console.log('可以再次加载')
+                 
+        //          console.log($scope);
+        //          flag = false;
+        //        },3000)
+        //    }
 
         }
       }

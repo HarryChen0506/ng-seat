@@ -50,6 +50,6 @@
 </style>
 
 
-<div class="scroll" id="scroll" scroll-loading on-loading="main.init()">
+<div class="scroll" id="scroll" scroll-loading distance="50" on-loading="getMore()" flag="flag">
     <div class="item" ng-repeat="item in list track by $index">下拉加载更多组件--{{$index}}</div>    
 </div>
