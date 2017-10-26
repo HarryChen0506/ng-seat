@@ -160,11 +160,12 @@ body {
     }    
     .main .left .seat .seat-container .seat-row {
             display: flex;
-            flex-wrap: nowrap;            
+            flex-wrap: nowrap;
+            /*width: 2000px*/
     }
     .main .left .seat .seat-container .seat-row .seat-one {
           /*display: inline-block;*/
-          /*min-width: 50px;*/
+          min-width: 50px;
           width: 50px;
           height: 50px;
           background-color: #EEF0F4;
@@ -427,7 +428,7 @@ body {
 .sale .main {
     display: flex;
 }
-.sale .main .main-left {.
+.sale .main .main-left {
   background-color: #f5f5f5;
 }
 .sale .main .main-right {

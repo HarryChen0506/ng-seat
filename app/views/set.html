@@ -34,7 +34,7 @@
                                     ng-repeat ="itemCol in itemRow track by $index"
                                     ng-click="selectSeat(itemCol)"
                                     data-seatoid="{{itemCol.rowIndex+'-'+itemCol.colIndex}}"
-                                    style="width:{{ui.size}}px; height:{{ui.size}}px"
+                                    style="width:{{ui.size}}px;min-width:{{ui.size}}px; height:{{ui.size}}px"
                                     >
                                     <seat seat-one="itemCol"></seat>
                                 </div>
