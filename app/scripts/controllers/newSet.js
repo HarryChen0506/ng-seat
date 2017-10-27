@@ -206,15 +206,16 @@ angular.module('ngSeatApp')
        $scope.doSelect = false;
         //点击事件
         $scope.selectSeat = function (seat){
-            //  seat.selected = $scope.doSelect;
+            seat.selected = !seat.selected;
+            $scope.doSelect = seat.selected;
             //  console.log(seat)
              $scope.calSelectedList();
         }
         //鼠标按住
         $scope.selectMousedown = function(seat){
             $scope.isEdit = true;
-            seat.selected = true;
-            $scope.doSelect = !$scope.doSelect;                                 
+            // $scope.doSelect = !$scope.doSelect;  
+            //  seat.selected =  $scope.doSelect;                               
             // console.log('鼠标下按',$scope.isEdit);
             //  console.log(seat)
         }        
@@ -223,6 +224,7 @@ angular.module('ngSeatApp')
             $scope.isEdit = false;
             // console.log('鼠标松开',$scope.isEdit);
             //  console.log(seat) 
+            $scope.doSelect = !$scope.doSelect; 
             $scope.calSelectedList();
         }
         //鼠标滑动
@@ -232,10 +234,7 @@ angular.module('ngSeatApp')
                 // console.log('鼠标滑动',$scope.isEdit);
                 // console.log(seat)
              }         
-        }
-
-
-       
+        }      
 
 
 
