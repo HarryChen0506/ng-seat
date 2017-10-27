@@ -203,6 +203,81 @@ angular.module('ngSeatApp')
         }
       }
   })
+  .directive('newSeatBox',function(){
+        return {
+            restrict: 'EA',
+            scope: {
+                // ngFileSelect: '&'
+                selectedList: '=',
+                seatList: '=',
+                collectBox: '&'
+            },
+            controller: function ($scope){
+                // $scope.fileObj = {
+                
+                // }
+
+                $scope.selectSeat = function (seat){
+                        //  seat.selected = !seat.selected;
+                    console.log(seat)
+                        //  $scope.calSelectedList();
+                }
+            },
+            link: function ($scope,element,attrs){
+                function calSelectBox(){
+                    // console.log('触发回掉函数')
+                    //先清空之前选中的
+                    $scope.seatList.forEach(function(item){
+                        item.forEach(function(item){
+                        item.selected = false;                    
+                        })
+                    })
+                
+                    //遍历每个座位
+                    // console.log($scope.seatList)
+                    var $seatList = $(element).find("div.seat-one"); 
+                    for(var i=0; i<$seatList.length; i++){
+                        var $seatOne = $($seatList[i]);
+                        //  console.log($($seatOne));
+                        var rowIndex =  $seatOne.attr('data-seatoid').split('-')[0];
+                        var colIndex =  $seatOne.attr('data-seatoid').split('-')[1];                 
+                        if($seatOne.hasClass("seled")){
+                            // console.log(rowIndex,colIndex);
+                            //变更模型里的选中状态为true
+                            findSeatListChecked(rowIndex,colIndex)
+                        }
+                    }
+                    $scope.collectBox();
+                }
+                function findSeatListChecked(rowIndex,colIndex){
+                    $scope.seatList.forEach(function(item){
+                        item.forEach(function(item){
+                            if(rowIndex==item.rowIndex && colIndex==item.colIndex){
+                            // console.log(rowIndex,colIndex,item)
+                            item.selected =true;
+                            }
+                        })
+                    })
+                }
+                
+                //点击事件             
+                // $(element).delegate('div.seat-one','click',function (){
+                //     console.log('代理事件')
+                //     console.log($(this))
+                //     var evt = window.event || arguments[0];
+                //     evt.stopPropagation(); 
+                //     if (!$(this).hasClass("seled")) { 
+                //         $(this).addClass("seled")
+                //     }else{
+                //         $(this).removeClass("seled")
+                //     }
+                //     //触发回调            
+                //     calSelectBox();
+                // })    
+                     
+            }
+        }
+  })
   .directive('scrollLoading',function(){
      return {
         restrict: 'EA',

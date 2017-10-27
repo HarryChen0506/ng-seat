@@ -63,8 +63,8 @@ angular
           url: '/set2',
           views:{
             "":{
-              controller: 'SetCtrl',
-              templateUrl: 'views/set.html'
+              controller: 'newSetCtrl',
+              templateUrl: 'views/newSet.html'
             }
           }
         })   
